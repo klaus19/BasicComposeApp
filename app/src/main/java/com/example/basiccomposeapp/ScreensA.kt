@@ -3,6 +3,8 @@ package com.example.basiccomposeapp
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
@@ -34,20 +36,22 @@ fun ScreenA(navController: NavController) {
         itemsIndexed(gridItems) { index,item ->
             Card(
                 modifier = Modifier
-                    .fillMaxWidth().padding(10.dp)
+                    .fillMaxWidth()
+                    .padding(10.dp)
                     .height(50.dp)
                     .width(50.dp)
                     .clickable {
-                        when(index){
-                            0->navController.navigate(Destinations.ScreenA)
-                            1->navController.navigate(Destinations.ScreenB)
-                            2->navController.navigate(Destinations.ScreenC)
+                        when (index) {
+                            0 -> navController.navigate(Destinations.ScreenA)
+                            1 -> navController.navigate(Destinations.ScreenB)
+                            2 -> navController.navigate(Destinations.ScreenC)
                         }
 
                     }
             ,backgroundColor = Color.Blue,
-            ) {
-                Text(text = item, color = Color.White, textAlign = TextAlign.Center)
+            )
+            {
+                Text(text = item, color = Color.White, textAlign = TextAlign.Center, modifier = Modifier.fillMaxSize().padding(12.dp))
             }
         }
     }
