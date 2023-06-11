@@ -18,7 +18,7 @@ fun App(){
             ScreenA(navController)
         }
         composable(Destinations.ScreenB){
-            ScreenB()
+            ScreenB(navController)
         }
         composable(ScreenC){
             ScreenC()
