@@ -62,7 +62,7 @@ fun ScreenA(navController: NavController) {
                 shape = RoundedCornerShape(10.dp),
                 onClick = {
                     when(index){
-                        0 -> navController.navigate(Destinations.ScreenA)
+                        0 -> navController.navigate(Destinations.ScreenPlay)
                         1 -> navController.navigate(Destinations.ScreenB)
                         2 -> navController.navigate(Destinations.ScreenC)
                     }
