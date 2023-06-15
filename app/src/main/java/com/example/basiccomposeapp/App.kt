@@ -13,6 +13,7 @@ import androidx.compose.material.icons.filled.PlayArrow
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.navigation.NavController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
@@ -36,10 +37,17 @@ fun App() {
         BottomNavigation {
             items.forEachIndexed { index, item ->
                 BottomNavigationItem(selected = selectedItem.value == index,
-                    onClick = { selectedItem.value = index },
+                    onClick = {
+                        selectedItem.value = index
+                        when(index){
+                            0->navController.navigate(Destinations.ScreenA)
+                            1->navController.navigate(Destinations.ScreenPlay)
+                        }
+                              },
                     icon = {
                         if (index==0){
                             Icon(Icons.Default.Person, contentDescription = item)
+
                         }else{
                             Icon(Icons.Default.PlayArrow, contentDescription = item)
                         }
@@ -54,14 +62,18 @@ fun App() {
     ) {
         NavHost(navController = navController, startDestination = Destinations.ScreenA) {
 
-            composable(Destinations.ScreenA) {
+            composable(ScreenA) {
                 ScreenA(navController)
             }
-            composable(Destinations.ScreenB) {
+            composable(ScreenB) {
                 ScreenB(navController)
             }
             composable(ScreenC) {
-                ScreenC()
+                ScreenC(navController)
+            }
+
+            composable(Destinations.ScreenPlay){
+                ScreenPlay(navController)
             }
         }
     }
