@@ -73,7 +73,7 @@ fun App() {
             }
 
             composable(Destinations.ScreenPlay){
-                ScreenPlay(navController)
+                ScreenPlay()
             }
         }
     }

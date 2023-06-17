@@ -31,22 +31,24 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.example.basiccomposeapp.ui.theme.model.ImageModel
+import com.example.basiccomposeapp.ui.theme.model.ScreenAmodel
 
 
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
 fun ScreenA(navController: NavController) {
 
-    lateinit var birdList:List<ImageModel>
+    lateinit var birdList:List<ScreenAmodel>
     birdList = ArrayList()
-    birdList = listOf(ImageModel("Bird",R.drawable.bird), ImageModel("Dish",R.drawable.dish),
-        ImageModel("food",R.drawable.food), ImageModel("television",R.drawable.television),
-        ImageModel("Bird",R.drawable.bird), ImageModel("Dish",R.drawable.dish),
-        ImageModel("food",R.drawable.food), ImageModel("television",R.drawable.television),
-        ImageModel("Bird",R.drawable.bird), ImageModel("Dish",R.drawable.dish),
-        ImageModel("food",R.drawable.food), ImageModel("television",R.drawable.television),
-        ImageModel("Bird",R.drawable.bird), ImageModel("Dish",R.drawable.dish),
-        ImageModel("food",R.drawable.food), ImageModel("television",R.drawable.television)
+    birdList = listOf(
+        ScreenAmodel("Bird",R.drawable.bird), ScreenAmodel("Dish",R.drawable.dish),
+        ScreenAmodel("food",R.drawable.food), ScreenAmodel("television",R.drawable.television),
+        ScreenAmodel("Bird",R.drawable.bird), ScreenAmodel("Dish",R.drawable.dish),
+        ScreenAmodel("food",R.drawable.food), ScreenAmodel("television",R.drawable.television),
+        ScreenAmodel("Bird",R.drawable.bird), ScreenAmodel("Dish",R.drawable.dish),
+        ScreenAmodel("food",R.drawable.food), ScreenAmodel("television",R.drawable.television),
+        ScreenAmodel("Bird",R.drawable.bird), ScreenAmodel("Dish",R.drawable.dish),
+        ScreenAmodel("food",R.drawable.food), ScreenAmodel("television",R.drawable.television)
     )
 
 
