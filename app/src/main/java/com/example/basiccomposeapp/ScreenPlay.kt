@@ -38,6 +38,7 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.example.basiccomposeapp.db.SavedCard
 import com.example.basiccomposeapp.ui.theme.model.ImageModel
@@ -46,7 +47,7 @@ import com.example.basiccomposeapp.ui.theme.model.ImageModel
 
 @SuppressLint("UnusedMaterialScaffoldPaddingParameter")
 @Composable
-fun ScreenPlay(){
+fun ScreenPlay(navController: NavController){
 
     lateinit var playList:List<ImageModel>
     playList = ArrayList()
@@ -86,7 +87,10 @@ fun ScreenPlay(){
     },
         floatingActionButton = {
             FloatingActionButton(onClick = {
-                      navController.navigate(Destinations.ScreenLearn)
+                      navController.navigate(Destinations.ScreenLearn){
+                          popUpTo(Destinations.ScreenPlay) { inclusive = true }
+                      }
+
             },
                 modifier = Modifier.padding(bottom = 20.dp)
             ) {

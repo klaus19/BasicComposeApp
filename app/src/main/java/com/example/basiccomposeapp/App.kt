@@ -10,9 +10,10 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Person
 import androidx.compose.material.icons.filled.PlayArrow
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.State
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
-import androidx.lifecycle.asFlow
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
@@ -74,10 +75,12 @@ fun App() {
             }
 
             composable(Destinations.ScreenPlay){
-                ScreenPlay()
+                ScreenPlay(navController=navController)
             }
             composable(Destinations.ScreenLearn){
-                val savedCards = listOf<SavedCard>() // Replace this with your actual list of SavedCards
+                val screenViewModel: ScreenViewModel = viewModel()
+                val savedCardsState: State<List<SavedCard>> = screenViewModel.allWords.collectAsState(emptyList())
+                val savedCards: List<SavedCard> = savedCardsState.value
                 ScreenLearn(savedCards)
             }
         }

@@ -17,7 +17,7 @@ class ScreenViewModel(private val savedCardRepository:SavedCardRepository):ViewM
     // - We can put an observer on the data (instead of polling for changes) and only update the
     //   the UI when the data actually changes.
     // - Repository is completely separated from the UI through the ViewModel.
-    var allWords: LiveData<List<SavedCard>> = savedCardRepository.savedCards.asLiveData()
+    var allWords: Flow<List<SavedCard>> = savedCardRepository.savedCards
 
     /**
      * Launching a new coroutine to insert the data in a non-blocking way
