@@ -6,8 +6,8 @@ import androidx.room.PrimaryKey
 
 @Entity(tableName = "saved_cards")
 data class SavedCard(
-      @PrimaryKey(autoGenerate = true)
-      val id:Long=0,
-      val imageName:String,
-      val imageId:Int
+    @PrimaryKey(autoGenerate = true)
+    val id:Int=0,
+    val imageName:String,
+    val imageId: Int
 )

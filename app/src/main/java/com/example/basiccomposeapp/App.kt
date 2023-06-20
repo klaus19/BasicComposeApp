@@ -7,19 +7,20 @@ import androidx.compose.material.Icon
 import androidx.compose.material.Scaffold
 import androidx.compose.material.Text
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Home
 import androidx.compose.material.icons.filled.Person
 import androidx.compose.material.icons.filled.PlayArrow
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
-import androidx.navigation.NavController
+import androidx.lifecycle.asFlow
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.example.basiccomposeapp.Destinations.ScreenA
 import com.example.basiccomposeapp.Destinations.ScreenB
 import com.example.basiccomposeapp.Destinations.ScreenC
+import com.example.basiccomposeapp.db.SavedCard
 
 
 @SuppressLint("UnusedMaterialScaffoldPaddingParameter")
@@ -74,6 +75,10 @@ fun App() {
 
             composable(Destinations.ScreenPlay){
                 ScreenPlay()
+            }
+            composable(Destinations.ScreenLearn){
+                val savedCards = listOf<SavedCard>() // Replace this with your actual list of SavedCards
+                ScreenLearn(savedCards)
             }
         }
     }
