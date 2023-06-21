@@ -10,10 +10,10 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Person
 import androidx.compose.material.icons.filled.PlayArrow
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.State
-import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.ui.platform.LocalContext
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
@@ -28,12 +28,17 @@ import com.example.basiccomposeapp.db.SavedCard
 @Composable
 fun App() {
 
-
+    val context = LocalContext.current
     val navController = rememberNavController()
     val items = listOf<String>("User","Play")
     val selectedItem = remember {
         mutableStateOf(0)
     }
+    val savedCards = remember { mutableStateListOf<SavedCard>() }
+    val cardViewmodel: ScreenViewModel = viewModel(
+        factory = ScreenViewmodelFactory((context.applicationContext as MyApp).repository)
+    )
+
 
     Scaffold(bottomBar = {
         BottomNavigation {
@@ -64,6 +69,8 @@ fun App() {
     ) {
         NavHost(navController = navController, startDestination = Destinations.ScreenA) {
 
+
+
             composable(ScreenA) {
                 ScreenA(navController)
             }
@@ -75,13 +82,11 @@ fun App() {
             }
 
             composable(Destinations.ScreenPlay){
-                ScreenPlay(navController=navController)
+                ScreenPlay(navController)
             }
             composable(Destinations.ScreenLearn){
-                val screenViewModel: ScreenViewModel = viewModel()
-                val savedCardsState: State<List<SavedCard>> = screenViewModel.allWords.collectAsState(emptyList())
-                val savedCards: List<SavedCard> = savedCardsState.value
-                ScreenLearn(savedCards)
+
+                ScreenLearn(savedCards = savedCards)
             }
         }
     }

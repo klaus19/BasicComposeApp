@@ -30,6 +30,11 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateListOf
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -49,6 +54,9 @@ import com.example.basiccomposeapp.ui.theme.model.ImageModel
 @Composable
 fun ScreenPlay(navController: NavController){
 
+    // Mutable state to hold the dynamically updated saved cards
+    var savedCards by remember { mutableStateOf(emptyList<SavedCard>()) }
+
     lateinit var playList:List<ImageModel>
     playList = ArrayList()
     playList = listOf(
@@ -64,7 +72,7 @@ fun ScreenPlay(navController: NavController){
     )
 
 
-    val navController = rememberNavController()
+  //  val navController = rememberNavController()
 //For using the object on ArrowBack Icon
     val onBackPressedDispatcher = LocalOnBackPressedDispatcherOwner.current?.onBackPressedDispatcher
     Scaffold(topBar = {
@@ -87,12 +95,9 @@ fun ScreenPlay(navController: NavController){
     },
         floatingActionButton = {
             FloatingActionButton(onClick = {
-                      navController.navigate(Destinations.ScreenLearn){
-                          popUpTo(Destinations.ScreenPlay) { inclusive = true }
-                      }
-
+                      navController.navigate(Destinations.ScreenLearn)
             },
-                modifier = Modifier.padding(bottom = 20.dp)
+                modifier = Modifier.padding(bottom = 50.dp, end = 40.dp)
             ) {
                 Icon(
                     Icons.Default.Add,
@@ -149,10 +154,11 @@ fun ScreenPlay(navController: NavController){
                                     val imagename = playList[it].imageName
                                     val imageResource = playList[it].imageId
 
-                                    val pair =
+                                    val newSaved =
                                         SavedCard(imageId =imageResource, imageName = imagename)
-                                    cardViewmodel.insertCards(pair)
-                                    Log.d("Database", "Value saved: $pair")
+                                    savedCards += newSaved
+                                    cardViewmodel.insertCards(newSaved)
+                                    Log.d("Database", "Value saved: $newSaved")
                                     Toast.makeText(context,"Image saved", Toast.LENGTH_SHORT).show()
 
 
