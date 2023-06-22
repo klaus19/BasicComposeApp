@@ -23,13 +23,12 @@ class ScreenViewModel(private val savedCardRepository:SavedCardRepository):ViewM
 
 
 
+
     /**
      * Launching a new coroutine to insert the data in a non-blocking way
      */
     fun insertCards(savedCard: SavedCard) = viewModelScope.launch {
         savedCardRepository.saveCard(savedCard)
-        val updatedList = (allWords.value ?: emptyList()).toMutableList()
-        updatedList.add(savedCard)
     }
 
     fun deleteCards(savedCard: SavedCard) = viewModelScope.launch {

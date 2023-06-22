@@ -10,6 +10,8 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Person
 import androidx.compose.material.icons.filled.PlayArrow
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -35,9 +37,7 @@ fun App() {
         mutableStateOf(0)
     }
     val savedCards = remember { mutableStateListOf<SavedCard>() }
-    val cardViewmodel: ScreenViewModel = viewModel(
-        factory = ScreenViewmodelFactory((context.applicationContext as MyApp).repository)
-    )
+
 
 
     Scaffold(bottomBar = {
@@ -85,7 +85,6 @@ fun App() {
                 ScreenPlay(navController)
             }
             composable(Destinations.ScreenLearn){
-
                 ScreenLearn(savedCards = savedCards)
             }
         }
