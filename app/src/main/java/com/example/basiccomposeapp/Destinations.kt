@@ -7,4 +7,5 @@ object Destinations {
     const val ScreenC = "screenC"
     const val ScreenPlay = "screenPlay"
     const val ScreenLearn = "screenLearn"
+    const val Cards = "cardsScreen"
 }

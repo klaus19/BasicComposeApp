@@ -60,8 +60,8 @@ fun ScreenPlay(navController: NavController){
     lateinit var playList:List<ImageModel>
     playList = ArrayList()
     playList = listOf(
-        ImageModel("Tejas",R.drawable.television,R.drawable.save),
-                   ImageModel("Nikita",R.drawable.food,R.drawable.save),
+        ImageModel("TNT",R.drawable.television,R.drawable.save),
+                   ImageModel("nt",R.drawable.food,R.drawable.save),
                    ImageModel("xyz",R.drawable.dish,R.drawable.save),
                    ImageModel("gggg",R.drawable.bird,R.drawable.save)
     )

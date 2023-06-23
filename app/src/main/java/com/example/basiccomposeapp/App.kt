@@ -24,6 +24,7 @@ import com.example.basiccomposeapp.Destinations.ScreenA
 import com.example.basiccomposeapp.Destinations.ScreenB
 import com.example.basiccomposeapp.Destinations.ScreenC
 import com.example.basiccomposeapp.db.SavedCard
+import com.medium.viewpager.Cards
 
 
 @SuppressLint("UnusedMaterialScaffoldPaddingParameter")
@@ -32,7 +33,7 @@ fun App() {
 
     val context = LocalContext.current
     val navController = rememberNavController()
-    val items = listOf<String>("User","Play")
+    val items = listOf<String>("User","Play","Cards")
     val selectedItem = remember {
         mutableStateOf(0)
     }
@@ -49,6 +50,7 @@ fun App() {
                         when(index){
                             0->navController.navigate(Destinations.ScreenA)
                             1->navController.navigate(Destinations.ScreenPlay)
+                            2->navController.navigate(Destinations.Cards)
                         }
                               },
                     icon = {
@@ -86,6 +88,9 @@ fun App() {
             }
             composable(Destinations.ScreenLearn){
                 ScreenLearn(savedCards = savedCards)
+            }
+            composable(Destinations.Cards){
+                Cards(navController)
             }
         }
     }
