@@ -50,6 +50,9 @@ import com.example.basiccomposeapp.db.SavedCard
 fun ScreenLearn(savedCards: List<SavedCard>) {
 
      val navController = rememberNavController()
+     val pair:MutableList<Pair<String,Int>> = remember {
+         mutableStateListOf()
+     }
     //For using the object on ArrowBack Icon
     val onBackPressedDispatcher = LocalOnBackPressedDispatcherOwner.current?.onBackPressedDispatcher
     Scaffold(topBar = {
@@ -107,7 +110,10 @@ fun ScreenLearn(savedCards: List<SavedCard>) {
                                 fontWeight = FontWeight.Bold
                             )
 
+
                         }
+
+
                     }
 
                 }

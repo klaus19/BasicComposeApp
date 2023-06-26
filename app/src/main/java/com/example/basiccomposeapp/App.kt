@@ -10,30 +10,27 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Person
 import androidx.compose.material.icons.filled.PlayArrow
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
-import androidx.compose.ui.platform.LocalContext
-import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import com.example.basiccomposeapp.Destinations.ScreenA
 import com.example.basiccomposeapp.Destinations.ScreenB
 import com.example.basiccomposeapp.Destinations.ScreenC
+import com.example.basiccomposeapp.Destinations.ScreensA
 import com.example.basiccomposeapp.db.SavedCard
-import com.medium.viewpager.Cards
+import com.example.basiccomposeapp.ui.theme.Medium
+import com.google.accompanist.pager.ExperimentalPagerApi
 
 
+@OptIn(ExperimentalPagerApi::class)
 @SuppressLint("UnusedMaterialScaffoldPaddingParameter")
 @Composable
 fun App() {
 
-    val context = LocalContext.current
     val navController = rememberNavController()
-    val items = listOf<String>("User","Play","Cards")
+    val items = listOf("User","Play","Cards")
     val selectedItem = remember {
         mutableStateOf(0)
     }
@@ -48,7 +45,7 @@ fun App() {
                     onClick = {
                         selectedItem.value = index
                         when(index){
-                            0->navController.navigate(Destinations.ScreenA)
+                            0->navController.navigate(Destinations.ScreensA)
                             1->navController.navigate(Destinations.ScreenPlay)
                             2->navController.navigate(Destinations.Cards)
                         }
@@ -69,11 +66,11 @@ fun App() {
         }
     }
     ) {
-        NavHost(navController = navController, startDestination = Destinations.ScreenA) {
+        NavHost(navController = navController, startDestination = ScreensA) {
 
 
 
-            composable(ScreenA) {
+            composable(ScreensA) {
                 ScreenA(navController)
             }
             composable(ScreenB) {
@@ -92,6 +89,13 @@ fun App() {
             composable(Destinations.Cards){
                 Cards(navController)
             }
+            composable(Destinations.Medium){
+                Medium(navController = navController)
+            }
+            composable(Destinations.Hard){
+                Hard(navController = navController)
+            }
+
         }
     }
 }
