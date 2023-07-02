@@ -90,7 +90,7 @@ fun App() {
                 Cards(navController)
             }
             composable(Destinations.Medium){
-                Medium(navController = navController)
+                MediumScreen(navController = navController)
             }
             composable(Destinations.Hard){
                 Hard(navController = navController)

@@ -3,6 +3,7 @@ package com.example.basiccomposeapp
 import android.annotation.SuppressLint
 import androidx.activity.compose.LocalOnBackPressedDispatcherOwner
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.Icon
 import androidx.compose.material.IconButton
@@ -43,7 +44,9 @@ fun Hard(navController: NavController){
             )
         }
     ) {
-        TableLayout(navController)
+        Box(modifier = Modifier.padding(top=300.dp)){
+            TableLayout(navController)
+        }
         Hello()
     }
 }
