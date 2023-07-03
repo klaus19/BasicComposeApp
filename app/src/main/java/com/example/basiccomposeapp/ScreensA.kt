@@ -30,13 +30,14 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
+import androidx.navigation.compose.rememberNavController
 import com.example.basiccomposeapp.ui.theme.model.ImageModel
 import com.example.basiccomposeapp.ui.theme.model.ScreenAmodel
 
 
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
-fun ScreenA(navController: NavController) {
+fun ScreenA(navController:NavController) {
 
     lateinit var birdList:List<ScreenAmodel>
     birdList = ArrayList()
@@ -54,7 +55,8 @@ fun ScreenA(navController: NavController) {
 
     LazyVerticalGrid(
         columns = GridCells.Fixed(2),
-        modifier = Modifier.padding(8.dp)
+        modifier = Modifier
+            .padding(8.dp)
             .padding(bottom = 56.dp)
             .navigationBarsPadding()
 
@@ -66,7 +68,6 @@ fun ScreenA(navController: NavController) {
                     when(index){
                         0 -> navController.navigate(Destinations.ScreenPlay)
                         1 -> navController.navigate(Destinations.ScreenB)
-                        2 -> navController.navigate(Destinations.ScreenC)
                     }
                 },
                 elevation = 6.dp,

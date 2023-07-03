@@ -22,7 +22,10 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
+import androidx.navigation.compose.rememberNavController
 import com.google.accompanist.pager.ExperimentalPagerApi
+
+
 
 
 @ExperimentalPagerApi
@@ -32,18 +35,20 @@ fun TableLayout(navController: NavController) {
 
     val tabs = listOf("Basic", "Medium", "Hard")
 
-    Column(modifier = Modifier.width(100.dp).height(140.dp)
+    Column(modifier = Modifier
+        .width(100.dp)
+        .height(140.dp)
         .background(Color(153, 50, 204))
         .padding(start = 8.dp),
-        ) {
+    ) {
         tabs.forEachIndexed { index, title ->
             Tab(
                 text = { Text(title, color = Color.White, textAlign = TextAlign.Start) },
                 selected = tabIndex == index,
                 onClick = {
                     tabIndex = index
-                    when (index) {
-                        0 -> navController.navigate(Destinations.Cards)
+                    when (tabIndex) {
+                        0 -> navController.navigate(Destinations.Basic)
                         1 -> navController.navigate(Destinations.Medium)
                         2 -> navController.navigate(Destinations.Hard)
                     }
